@@ -1,0 +1,13 @@
+﻿<Application x:Class="Plainion.OneNote.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:Plainion.OneNote.ViewModels"
+             xmlns:views="clr-namespace:Plainion.OneNote.Views">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type viewModels:NoteBookViewModel}">
+            <views:NoteBookView/>
+        </DataTemplate>
+        <!-- https://stackoverflow.com/questions/4813488/datatemplate-in-app-xaml-is-not-getting-picked-up-without-any-styles -->
+        <Style TargetType="{x:Type Rectangle}" />
+    </Application.Resources>
+</Application>
