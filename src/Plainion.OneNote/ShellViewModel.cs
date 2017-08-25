@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.Composition;
+using System.IO;
+using Plainion.OneNote.Services;
 using Plainion.OneNote.ViewModels;
 using Plainion.Windows.Mvvm;
 
@@ -10,19 +12,9 @@ namespace Plainion.OneNote
         private string myTitle;
 
         [ImportingConstructor]
-        public ShellViewModel()
+        public ShellViewModel(ProjectService projectService)
         {
-            //var args = Environment.GetCommandLineArgs();
-            //if (args.Length > 1)
-            //{
-            //    myBuildService.InitializeBuildDefinition(args[1]);
-            //}
-            //else
-            //{
-            //    myBuildService.InitializeBuildDefinition(null);
-            //}
-
-            Title = string.Format("Project: {0}", "<unknown>");
+            Title = string.Format("Project: {0}", Path.GetFileName(projectService.Name));
         }
 
         public string Title

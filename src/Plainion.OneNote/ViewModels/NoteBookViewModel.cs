@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Documents;
-using Plainion.IO.MemoryFS;
+using Plainion.IO.RealFS;
+using Plainion.OneNote.Services;
 using Plainion.Windows.Controls.Text;
 using Plainion.Windows.Mvvm;
 
@@ -11,11 +12,17 @@ namespace Plainion.OneNote.ViewModels
     {
         private FileSystemDocumentStore myDocumentStore;
 
-        public NoteBookViewModel()
+        [ImportingConstructor]
+        public NoteBookViewModel(ProjectService projectService)
         {
             var fs = new FileSystemImpl();
+            var storeFolder = fs.Directory(projectService.DocumentStoreFolder);
+            if (!storeFolder.Exists)
+            {
+                storeFolder.Create();
+            }
 
-            DocumentStore = new FileSystemDocumentStore(fs.Directory("/x"));
+            DocumentStore = new FileSystemDocumentStore(storeFolder);
             DocumentStore.Initialize();
 
             DocumentStore.Create("/User documentation/Installation").Body.AddText("Installation");
@@ -24,7 +31,10 @@ namespace Plainion.OneNote.ViewModels
             DocumentStore.Create("/Developer documentation/Getting started").Body.AddText("Getting started as a developer");
             DocumentStore.Create("/Developer documentation/HowTos/MVC with F#").Body.AddText("MVC with F#");
             DocumentStore.Create("/Developer documentation/HowTos/WebApi with F#").Body.AddText("WebApi with F#");
+
+            DocumentStore.SaveChanges();
         }
+
         public FileSystemDocumentStore DocumentStore
         {
             get { return myDocumentStore; }
