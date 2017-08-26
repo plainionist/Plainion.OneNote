@@ -11,6 +11,12 @@ namespace Plainion.OneNote.Services
         public ProjectService()
         {
             Location = Path.GetFullPath(GetProject());
+
+            if (!File.Exists(Location))
+            {
+                File.WriteAllText(Location, "placeholder");
+            }
+
             Name = Path.GetFileNameWithoutExtension(Location);
             DocumentStoreFolder = Path.Combine(Path.GetDirectoryName(Location), "." + Name);
         }

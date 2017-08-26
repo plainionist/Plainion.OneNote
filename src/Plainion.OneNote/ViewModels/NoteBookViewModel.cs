@@ -17,6 +17,7 @@ namespace Plainion.OneNote.ViewModels
         {
             var fs = new FileSystemImpl();
             var storeFolder = fs.Directory(projectService.DocumentStoreFolder);
+            var isNewStore = !storeFolder.Exists;
             if (!storeFolder.Exists)
             {
                 storeFolder.Create();
@@ -25,12 +26,11 @@ namespace Plainion.OneNote.ViewModels
             DocumentStore = new FileSystemDocumentStore(storeFolder);
             DocumentStore.Initialize();
 
-            DocumentStore.Create("/User documentation/Installation").Body.AddText("Installation");
-            DocumentStore.Create("/User documentation/Getting started").Body.AddText("Getting started");
-            DocumentStore.Create("/User documentation/FAQ").Body.AddText("Frequenty Asked Questions");
-            DocumentStore.Create("/Developer documentation/Getting started").Body.AddText("Getting started as a developer");
-            DocumentStore.Create("/Developer documentation/HowTos/MVC with F#").Body.AddText("MVC with F#");
-            DocumentStore.Create("/Developer documentation/HowTos/WebApi with F#").Body.AddText("WebApi with F#");
+            if (isNewStore)
+            {
+                var doc = DocumentStore.Create("/Welcome");
+                doc.Body.Blocks.Add(new Paragraph(new Run("Welcome!")));
+            }
 
             DocumentStore.SaveChanges();
         }
@@ -39,14 +39,6 @@ namespace Plainion.OneNote.ViewModels
         {
             get { return myDocumentStore; }
             private set { SetProperty(ref myDocumentStore, value); }
-        }
-    }
-    static class FlowDocumentExtensions
-    {
-        public static FlowDocument AddText(this FlowDocument self, string text)
-        {
-            self.Blocks.Add(new Paragraph(new Run(text)));
-            return self;
         }
     }
 }
