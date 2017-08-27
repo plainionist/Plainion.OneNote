@@ -1,13 +1,18 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Windows.Documents;
 using Microsoft.Win32;
+using Plainion.IO.RealFS;
+using Plainion.Windows.Controls.Text;
 
 namespace Plainion.OneNote.Services
 {
     [Export]
     class ProjectService
     {
+        private FileSystemDocumentStore myDocumentStore;
+
         public ProjectService()
         {
             Location = Path.GetFullPath(GetProject());
@@ -19,9 +24,11 @@ namespace Plainion.OneNote.Services
 
             Name = Path.GetFileNameWithoutExtension(Location);
             DocumentStoreFolder = Path.Combine(Path.GetDirectoryName(Location), "." + Name);
+
+            myDocumentStore = InitializeDocumentStore(DocumentStoreFolder);
         }
 
-        private string GetProject()
+        private static string GetProject()
         {
             var args = Environment.GetCommandLineArgs();
             if (args.Length > 1)
@@ -52,10 +59,41 @@ namespace Plainion.OneNote.Services
             return null;
         }
 
+        private static FileSystemDocumentStore InitializeDocumentStore(string folder)
+        {
+            var fs = new FileSystemImpl();
+            var storeFolder = fs.Directory(folder);
+            var isNewStore = !storeFolder.Exists;
+            if (!storeFolder.Exists)
+            {
+                storeFolder.Create();
+            }
+
+            var store = new FileSystemDocumentStore(storeFolder);
+            store.Initialize();
+
+            if (isNewStore)
+            {
+                var doc = store.Create("/Welcome");
+                doc.Body.Blocks.Add(new Paragraph(new Run("Welcome!")));
+
+                store.SaveChanges();
+            }
+
+            return store;
+        }
+
+        public DocumentStore DocumentStore { get { return myDocumentStore; } }
+
         public string Location { get; private set; }
 
         public string Name { get; private set; }
 
         public string DocumentStoreFolder { get; private set; }
+
+        public void Save()
+        {
+            myDocumentStore.SaveChanges();
+        }
     }
 }

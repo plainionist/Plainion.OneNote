@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition.Hosting;
 using System.Windows;
 using Plainion.Composition;
+using Plainion.OneNote.Services;
 using Plainion.Windows;
 
 namespace Plainion.OneNote
@@ -28,6 +29,8 @@ namespace Plainion.OneNote
 
         private void OnShutdown(object sender, ExitEventArgs e)
         {
+            myComposer.Resolve<ProjectService>().Save();
+
             myComposer.Dispose();
         }
     }
