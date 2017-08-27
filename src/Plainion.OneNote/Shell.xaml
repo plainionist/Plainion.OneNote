@@ -10,11 +10,38 @@
     <Window.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveCommand}"/>
     </Window.InputBindings>
-    <Grid Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid Margin="1">
+        <Grid.Background>
+            <SolidColorBrush Color="Blue" Opacity=".2"/>
+        </Grid.Background>
+        <Grid.Style>
+            <Style>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Saved}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                         Storyboard.TargetProperty="Background.Opacity"
+                                         From=".2"
+                                         To=".8"
+                                         RepeatBehavior="1x"
+                                         AutoReverse="True"
+                                         Duration="0:0:1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
 
-        <ContentControl Grid.Row="0" Content="{Binding NoteBookViewModel}"/>
+        <Grid Margin="4" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ContentControl Grid.Row="0" Content="{Binding NoteBookViewModel}"/>
+        </Grid>
     </Grid>
 </Window>

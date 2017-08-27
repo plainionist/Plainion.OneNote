@@ -11,13 +11,19 @@ namespace Plainion.OneNote
     class ShellViewModel : BindableBase
     {
         private string myTitle;
+        private bool mySaved;
 
         [ImportingConstructor]
         public ShellViewModel(ProjectService projectService)
         {
             Title = string.Format("Project: {0}", Path.GetFileName(projectService.Name));
 
-            SaveCommand = new DelegateCommand(() => projectService.Save());
+            SaveCommand = new DelegateCommand(() =>
+            {
+                projectService.Save();
+                Saved = true;
+                Saved = false;
+            });
         }
 
         public string Title
@@ -30,5 +36,11 @@ namespace Plainion.OneNote
         public NoteBookViewModel NoteBookViewModel { get; private set; }
 
         public ICommand SaveCommand { get; private set; }
+
+        public bool Saved
+        {
+            get { return mySaved; }
+            set { SetProperty(ref mySaved, value); }
+        }
     }
 }
