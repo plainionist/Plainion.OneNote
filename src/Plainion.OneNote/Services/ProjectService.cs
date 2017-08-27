@@ -1,7 +1,10 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.IO;
+using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Threading;
 using Microsoft.Win32;
 using Plainion.IO.RealFS;
 using Plainion.Windows.Controls.Text;
@@ -12,6 +15,7 @@ namespace Plainion.OneNote.Services
     class ProjectService
     {
         private FileSystemDocumentStore myDocumentStore;
+        private DispatcherTimer myAutoSaveTimer;
 
         public ProjectService()
         {
@@ -26,6 +30,8 @@ namespace Plainion.OneNote.Services
             DocumentStoreFolder = Path.Combine(Path.GetDirectoryName(Location), "." + Name);
 
             myDocumentStore = InitializeDocumentStore(DocumentStoreFolder);
+
+            myAutoSaveTimer = new DispatcherTimer(TimeSpan.FromSeconds(60), DispatcherPriority.Background, new EventHandler(DoAutoSave), Application.Current.Dispatcher);
         }
 
         private static string GetProject()
@@ -81,6 +87,12 @@ namespace Plainion.OneNote.Services
             }
 
             return store;
+        }
+
+        private void DoAutoSave(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Auto saving ...");
+            myDocumentStore.SaveChanges();
         }
 
         public DocumentStore DocumentStore { get { return myDocumentStore; } }

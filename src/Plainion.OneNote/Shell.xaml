@@ -7,6 +7,9 @@
         Title="{Binding Title}" 
         Icon="Resources/NoteBook.ico"
         Width="1000" Height="800">
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveCommand}"/>
+    </Window.InputBindings>
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
