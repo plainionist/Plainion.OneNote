@@ -30,9 +30,9 @@ namespace Plainion.OneNote.ViewModels
             {
                 var doc = DocumentStore.Create("/Welcome");
                 doc.Body.Blocks.Add(new Paragraph(new Run("Welcome!")));
-            }
 
-            DocumentStore.SaveChanges();
+                DocumentStore.SaveChanges();
+            }
         }
 
         public FileSystemDocumentStore DocumentStore

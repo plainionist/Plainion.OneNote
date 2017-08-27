@@ -4,15 +4,7 @@
 *.pdb
 /*.suo
 /packages/Expression.Blend.Sdk.*
-/packages/LibGit2Sharp.*
 /packages/Plainion.*
-/packages/Prism.*
-/packages/FAKE.*
-/packages/NuGet.*
-/packages/NUnit.*
-/packages/FSharp.*
-/packages/FSharpVSPowerTools.*
 /Plainion.OneNote.gc.*
 /build/.fake
 /pkg
-/packages/Octokit.*
