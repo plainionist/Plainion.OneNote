@@ -1,8 +1,9 @@
 
-# Plainion.OneNote: ONE notebook to rule them all 
+# Plainion.OneNote: Connect our thoughts 
 
-Simple WPF application based on 
-[Plainion.Windows.Controls.Text.NoteBook](https://github.com/plainionist/Plainion.Windows/tree/master/src/Plainion.Windows/Controls/Text).
+[Plainion.OneNote](https://plainionist.github.io/Plainion.OneNote/) is a notebook app to easily
+structure and connect your thoughts.
+Unlike other similar solutions it focuses on content, providing only the "plainionic" formattings.
 
-![](docs/Overview.png)
+![](docs/Screenshots/Overview.png)
 
