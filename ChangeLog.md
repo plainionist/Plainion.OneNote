@@ -1,4 +1,8 @@
 
+## 1.3 - 2018-01-10
+
+- updated Plainion.Windows
+
 ## 1.2 - 2018-01-07
 
 - updated Plainion.Windows
