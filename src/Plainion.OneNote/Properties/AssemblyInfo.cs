@@ -5,15 +5,15 @@ using System.Reflection;
 [assembly: AssemblyProductAttribute("Plainion.OneNote")]
 [assembly: AssemblyDescriptionAttribute("Plainion.OneNote")]
 [assembly: AssemblyCopyrightAttribute("Copyright @ 2018")]
-[assembly: AssemblyVersionAttribute("1.3")]
-[assembly: AssemblyFileVersionAttribute("1.3")]
+[assembly: AssemblyVersionAttribute("1.4")]
+[assembly: AssemblyFileVersionAttribute("1.4")]
 namespace System {
     internal static class AssemblyVersionInformation {
         internal const System.String AssemblyTitle = "Plainion.OneNote";
         internal const System.String AssemblyProduct = "Plainion.OneNote";
         internal const System.String AssemblyDescription = "Plainion.OneNote";
         internal const System.String AssemblyCopyright = "Copyright @ 2018";
-        internal const System.String AssemblyVersion = "1.3";
-        internal const System.String AssemblyFileVersion = "1.3";
+        internal const System.String AssemblyVersion = "1.4";
+        internal const System.String AssemblyFileVersion = "1.4";
     }
 }

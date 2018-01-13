@@ -1,3 +1,7 @@
+## 1.4 - 2018-01-13
+
+- updated Plainion.Windows
+- documentation improved (home page)
 
 ## 1.3 - 2018-01-10
 
