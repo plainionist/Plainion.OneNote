@@ -38,7 +38,7 @@ Type (or paste)
 - "- " to start a bullet list
 - "-->" for a thin arrow
 - "==>" for a thick arrow
-- a URI for a clickable URI
+- a URI for a clickable URI (Ctrl-Click to open the URI)
   (URIs just starting with "www" will also be detected)
 
 Press
