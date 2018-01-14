@@ -1,3 +1,9 @@
+## 1.5 - 2018-01-14
+
+- updated Plainion.Windows
+- window size and position improved
+- navigation pane starts expanded
+
 ## 1.4 - 2018-01-13
 
 - updated Plainion.Windows

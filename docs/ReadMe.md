@@ -36,6 +36,7 @@ Type (or paste)
 - "## " for a headline level 2
 - "### " for a headline level 3
 - "- " to start a bullet list
+- "1. " to start a numbering list
 - "-->" for a thin arrow
 - "==>" for a thick arrow
 - a URI for a clickable URI (Ctrl-Click to open the URI)
@@ -48,6 +49,9 @@ Press
 - "Ctrl-I" to toggle italics of the selection
 - "Ctrl-U" to toggle underline of the selection
 - "TAB"/"Shift-TAB" to change indentation of selection
+
+*Note:* If you copy/paste text with different format it will be preserved. For example, you can copy
+code with syntax highlighting from Visual Studio and the colors will be kept.
 
 ## Installation
 

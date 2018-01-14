@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows.Documents;
-using Plainion.IO.RealFS;
 using Plainion.OneNote.Services;
 using Plainion.Windows.Controls.Text;
 using Plainion.Windows.Mvvm;

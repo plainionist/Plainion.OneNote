@@ -6,7 +6,8 @@
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Icon="Resources/NoteBook.ico"
-        Width="1000" Height="800">
+        Width="1400" Height="900"
+        WindowStartupLocation="CenterScreen">
     <Window.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveCommand}"/>
     </Window.InputBindings>
