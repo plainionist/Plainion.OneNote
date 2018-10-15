@@ -1,3 +1,7 @@
+## 1.6 - 2018-10-15
+
+- updated Plainion.Windows (performance improvements)
+
 ## 1.5 - 2018-01-14
 
 - updated Plainion.Windows
